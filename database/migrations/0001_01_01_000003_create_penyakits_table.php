@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->foreignId('kategori_penyakit_id')
                 ->nullable()
-                ->constrained('kategori_penyakit')
+                ->constrained('kategori_penyakits')
                 ->nullOnDelete();
 
             $table->boolean('is_active')->default(true);

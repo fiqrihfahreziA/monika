@@ -12,13 +12,36 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+           $table->id();
+
+            // Informasi login
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('password_forget')->nullable();
             $table->rememberToken();
+
+            // Hak akses
+            $table->string('role')->default('petugas_puskesmas');
+
+            $table->foreignId('puskesmas_id')
+                ->nullable()
+                ->constrained('puskesmas')
+                ->restrictOnDelete();
+
+            // Verifikasi akun
+            $table->string('status_verifikasi')->default('pending');
+
+            $table->foreignId('verified_by')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
+
+            $table->timestamp('verified_at')->nullable();
+            $table->text('catatan_verifikasi')->nullable();
+            $table->boolean('is_active')->default(false);
+
             $table->timestamps();
         });
 

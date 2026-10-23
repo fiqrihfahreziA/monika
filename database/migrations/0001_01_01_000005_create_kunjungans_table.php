@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->foreignId('pasien_id')
                 ->nullable()
-                ->constrained('pasien')
+                ->constrained('pasiens')
                 ->nullOnDelete();
 
             $table->foreignId('user_id')

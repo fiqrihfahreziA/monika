@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('kunjungan_id')
-                ->constrained('kunjungan')
+                ->constrained('kunjungans')
                 ->cascadeOnDelete();
 
             $table->foreignId('penyakit_id')
-                ->constrained('penyakit')
+                ->constrained('penyakits')
                 ->restrictOnDelete();
 
             $table->enum('jenis_diagnosis', [
