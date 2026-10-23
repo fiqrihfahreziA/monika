@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->redirectGuestsTo(fn () => '/login');
+         $middleware->web(append: [
+        \App\Http\Middleware\HandleInertiaRequests::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
